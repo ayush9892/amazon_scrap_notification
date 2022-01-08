@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="POST" action="">
-    {% csrf_token %}
+<form method="POST" action="">  <!-- POST is used when you submitted a form. -->
+    {% csrf_token %}   <!--This token is a hidden key, that is alloted to user to acces that site. If you will not use this then another third party will access your your site.--> 
     <h4 style="color:tomato;">Are you sure you want to delete the link: "{{object.name}}"?</h4>
     <button type="Submit" class="btn btn-primary">Yes</button>
+    <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
 </form>
 {% endblock content %}

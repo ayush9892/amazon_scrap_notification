@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup as soup
 import requests
-import lxml
+import lxml  # lxml provides a very simple and powerful API for parsing XML and HTML. It supports one-step analysis.
 
 def get_link_data(url):
 
@@ -14,17 +14,11 @@ def get_link_data(url):
     name = sobj.select_one(selector="#productTitle").getText()
     name = name.strip()
 
-    
-    try:
-       sobj.select_one(selector=".a-offscreen").getText()
-    except AttributeError:
-       price = sobj.select_one(selector="#priceblock_dealprice").getText()
-    else:
-       price = sobj.select_one(selector="#priceblock_ourprice").getText()
+    price = sobj.select_one(selector=".a-offscreen").getText()
 
 
     price = price[1:]
-    price = price.replace(',' , '')
+    price = price.replace(',' , '')  
     price = float(price)    
 
     return name, price
